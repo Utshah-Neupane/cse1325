@@ -10,7 +10,7 @@ public enum Pitch{
 	@Override
 	public String toString(){
 		switch (this){
-			case Db: return "D\u266d";
+			case Db: return "D\u266d"; //unicode for flat b
 			case Eb: return "E\u266d";
 			case Gb: return "G\u266d";
 			case Ab: return "A\u266d";
