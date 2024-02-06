@@ -5,7 +5,7 @@ public class Customer{
 
 
 	public Customer (String name, String email){
-		if (!email.contains("@)") || email.indexOf("@") > email.lastIndexOf(".")){
+		if (!email.contains("@") || email.indexOf("@") > email.lastIndexOf(".")){
 			throw new IllegalArgumentException ("Invalid Email Address: " + email);
 		}
 
@@ -14,7 +14,7 @@ public class Customer{
 	}
 
 	@Override
-	public toString (){
+	public String toString (){
 		return (name + "(" + email + ")");
 	}
 }

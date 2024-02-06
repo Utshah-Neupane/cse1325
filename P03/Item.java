@@ -15,18 +15,12 @@ public class Item{
 
 	@Override
 	public String toString(){
-		int dollar = price / 100;
-		int cents = price % 100;
+		int dollar = getPrice() / 100;
+		int cents = getPrice() % 100;
 
-		return String.format("%-30s $ %d.%02d", name, dollar, cents);
+		return String.format("%-3s %-26s $ %d.%02d", quantity, product, dollar, cents);
 
 	}
-
-
-
-
-
-
 }
 
 
