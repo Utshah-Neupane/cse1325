@@ -12,7 +12,7 @@ public class Product{
 			throw new IllegalArgumentException ("Invalid price of " + name + " : " + price);
 		}
 
-		this.stockNumber = (nextStockNumber * 2) + 5;
+		this.stockNumber = nextStockNumber++;
 		this.name = name;
 		this.price = price;
 	}
@@ -22,7 +22,7 @@ public class Product{
 		return stockNumber;
 	}
 
-	public getPrice(){
+	public int getPrice(){
 		return price;
 	}
 
