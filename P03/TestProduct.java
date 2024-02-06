@@ -3,8 +3,8 @@ public class TestProduct{
 		int error_count = 0;
 
 
-		Product product1 = new Product("Product1", 209);
-		Product product2 = new Product ("Product2", 30);
+		Product product1 = new Product("Apple", 209);
+		Product product2 = new Product ("Orange", 30);
 		
 
 		if (product1.getStockNumber() != 0){
@@ -26,7 +26,7 @@ public class TestProduct{
 
 		try {
 			Product product3 = new Product ("Product3", -23);
-			System.out.println ("ERROR: No exception thrown for a negative price.");
+			System.err.println ("ERROR: No exception thrown for a negative price.");
 			error_count++;
 		}
 			catch (Exception e){
