@@ -5,10 +5,8 @@ public class TestCustomer{
 
 		Customer customer1 = new Customer("Nancy", "nancy_white@gmail.com");
 		
-		
-
-		if (!customer1.toString().equals("Nancy(nancy_white@gmail.com)"){
-			System.err.println("ERROR: Incorrect string "+ customer1.toString() + " (Nancy(nancy_white@gmail.com) expected)";
+		if (!customer1.toString().equals("Nancy(nancy_white@gmail.com)")){
+			System.err.println("ERROR: Incorrect string "+ customer1.toString() + " (Nancy(nancy_white@gmail.com) expected)");
 			error_count++;
 		}
 
@@ -30,7 +28,6 @@ public class TestCustomer{
 		}
 			catch (Exception e){
 			}
-
 
 
 		System.exit (error_count);
