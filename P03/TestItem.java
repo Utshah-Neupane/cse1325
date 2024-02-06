@@ -14,9 +14,10 @@ public class TestItem{
 		}
 
 
-
-		
-
+		if (!item2.toString().equals("12                        $ 179.88")){
+			System.err.println("ERROR: Incorrect string, "+  " (12                        $ 179.88) expected");
+			error_count++;
+		}
 
 		System.exit (error_count);
 
