@@ -24,20 +24,16 @@ public class TestProduct{
 		}
 
 
-		negativeTest {
+		try {
 			Product product3 = new Product ("Product3", -23);
 			System.out.println ("ERROR: No exception thrown for a negative price.");
 			error_count++;
-			}
+		}
 			catch (Exception e){
 			}
 
-		if (error_count == 0){
-			return 0;
-		}
-		else{
-			return error_count;
-		}
+
+		System.exit (error_count);
 
 	}
 }
