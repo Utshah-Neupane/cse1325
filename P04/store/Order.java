@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Order{
 
-	private static int nextOrderNumber;
+	private static int nextOrderNumber = 1;
 	private int orderNumber;
 	private ArrayList<Item> items;
 	private final Customer customer;
@@ -23,7 +23,7 @@ public class Order{
 
 
 	public int getPrice(){
-		sum = 0;
+		int sum = 0;
 		for (Item item: items){
 			sum += item.getPrice();
 		}
@@ -34,17 +34,16 @@ public class Order{
 	@Override
 	public String toString(){
 		StringBuilder receipt = new StringBuilder();
-		receipt.append("Order #" + orderNumber + "for " + customer);
+		receipt.append("Order #" + orderNumber + " for " + customer + "\n\n");
 
 		for (Item item: items){
-			receipt.append(item);
-			System.out.println();
+			receipt.append(item).append("\n");
 		}
 
 		int dollar = getPrice() / 100;
 		int cents = getPrice() % 100;
 
-		receipt.append("Order Total: $").append(dollar).append(".").append(cents);
+		receipt.append("\nOrder Total: $").append(dollar).append(".").append(cents);
 		return receipt.toString();
 
 	}
