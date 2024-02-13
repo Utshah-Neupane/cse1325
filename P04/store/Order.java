@@ -1,6 +1,15 @@
 package store;
-
 import java.util.ArrayList;
+
+
+/**
+* Encapsulates a Customer and set of Items thay want to buy.
+*
+* @author 				Utshah Neupane
+* @version 				2.0
+* @since 				1.0
+* @license.agreement 	GNU GENERAL PUBLIC LICENSE Version 3
+*/
 
 public class Order{
 
