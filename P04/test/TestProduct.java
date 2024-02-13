@@ -1,6 +1,7 @@
 package test;
-import store.Product;
-
+import store.Exposure;
+import store.Tool;
+import store.Plant;
 
 
 public class TestProduct{
@@ -8,29 +9,30 @@ public class TestProduct{
 		int error_count = 0;
 
 
-		Product product1 = new Product("Apple", 209);
-		Product product2 = new Product ("Orange", 30);
+		Tool tool1 = new Tool("Axe", 159);
+		Plant plant1 = new Plant ("Rhododendron", 289, Exposure.PARTSUN);
+
 		
 
-		if (product1.getStockNumber() != 0){
-			System.err.println("ERROR: Incorrect stock number "+ product1.getStockNumber() + " (0 expected)");
+		if (tool1.getStockNumber() != 0){
+			System.err.println("ERROR: Incorrect stock number "+ tool1.getStockNumber() + " (0 expected)");
 			error_count++;
 		}
 
-		if (product2.getStockNumber() != 1){
-			System.err.println("ERROR: Incorrect stock number "+ product2.getStockNumber() + " (1 expected)");
+		if (plant1.getStockNumber() != 1){
+			System.err.println("ERROR: Incorrect stock number "+ plant1.getStockNumber() + " (1 expected)");
 			error_count++;
 		}
 
 
-		if (product1.getPrice() != 209){
-			System.err.println("ERROR: Incorrect price "+ product1.getPrice() + " (209 expected)");
+		if (tool1.getPrice() != 159){
+			System.err.println("ERROR: Incorrect price "+ tool1.getPrice() + " (159 expected)");
 			error_count++;
 		}
 
 
 		try {
-			Product product3 = new Product ("Product3", -23);
+			Tool tool2 = new Tool ("wedge", -23);
 			System.err.println ("ERROR: No exception thrown for a negative price.");
 			error_count++;
 		}
@@ -41,8 +43,9 @@ public class TestProduct{
 			System.err.println ("Throws wrong exception for negative price.\n"+ e);
 		}
 
-		if (!product1.toString().equals("Apple                          $ 2.09")){
-			System.err.println("ERROR: Incorrect string "+ product1.toString() + " (Apple                          $ 2.09) expected)");
+
+		if (!plant1.toString().equals("Plant: Rhododendron            $ 2.89")){
+			System.err.println("ERROR: Incorrect string "+ plant1.toString() + " (Plant: Rhododendron            $ 2.89) expected)");
 			error_count++;
 		}
 
