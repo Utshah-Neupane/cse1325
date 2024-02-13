@@ -1,7 +1,6 @@
 package store;
 
-public enum {
-	SHADE, PARTSUN, SUN;
+public enum Exposure {SHADE, PARTSUN, SUN;
 
 	@Override
 	public String toString(){
