@@ -19,6 +19,12 @@ public class Order{
 	private final Customer customer;
 
 
+/**
+* Initializes fields.
+*
+* @param customer name and email address of the customer
+* @since 1.0
+*/
 	public Order (Customer customer){
 		this.orderNumber = nextOrderNumber++;
 		this.customer = customer;
@@ -26,11 +32,25 @@ public class Order{
 	}
 
 
+
+/**
+* Adds new items to the list
+*
+* @param item new item to be added to the list with name and quantity
+* @since 1.0
+*/
 	public void addItem (Item item){
 		items.add(item);
 	}
 
 
+
+/**
+* Calculates sum of price of all items
+*
+* @return sum of item price as an integer
+* @since 1.0
+*/
 	public int getPrice(){
 		int sum = 0;
 		for (Item item: items){
@@ -40,6 +60,13 @@ public class Order{
 	}
 
 
+
+/**
+* Prints a formatted receipt including items name, price.
+* 
+* @return  receipt as a string
+* @since 1.0
+*/
 	@Override
 	public String toString(){
 		StringBuilder receipt = new StringBuilder();
@@ -54,13 +81,7 @@ public class Order{
 
 		receipt.append("\nOrder Total: $").append(dollar).append(".").append(cents);
 		return receipt.toString();
-
 	}
-
-
-
-
-
 
 }
 
