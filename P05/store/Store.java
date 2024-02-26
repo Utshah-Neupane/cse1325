@@ -32,7 +32,16 @@ public class Store{
 
 
 
-	public int 
+	public int newOrder(int customerIndex){
+	}
+
+
+	public void addToOrder(int orderIndex, int productIndex, int quantiy){
+	}
+
+
+	public String getOrderList(){
+	}
 
 
 
