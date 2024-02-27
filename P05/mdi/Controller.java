@@ -8,9 +8,6 @@ import store.Exposure;
 
 import java.util.Scanner;
 
-//import mdi.View;
-//import mdi.Menu;
-//import mdi.MenuItem;
 
 public class Controller{
 
@@ -20,7 +17,7 @@ public class Controller{
     private String output;
     private boolean isRunning;
     private Scanner in; 
-    private static String clearScreen = "\n".repeat(255);
+    private static String clearScreen = "\n".repeat(150);
 
 
     public Controller(String storeName){
@@ -32,12 +29,12 @@ public class Controller{
         this.in  = new Scanner(System.in);
 
 
-        mainMenu.addMenuItem(new MenuItem("0] Exit", ()->exit()));
-        mainMenu.addMenuItem(new MenuItem("1] Place an Order", ()->placeOrder()));
-        mainMenu.addMenuItem(new MenuItem("2] Welcome New Customer", ()->newCustomer()));
-        mainMenu.addMenuItem(new MenuItem("3] Define New Tool", ()->newTool()));
-        mainMenu.addMenuItem(new MenuItem("4] Define New Plant", ()->newPlant()));
-        mainMenu.addMenuItem(new MenuItem("5] Switch View", ()->switchView()));
+        mainMenu.addMenuItem(new MenuItem("Exit", ()->exit()));
+        mainMenu.addMenuItem(new MenuItem("Place an Order", ()->placeOrder()));
+        mainMenu.addMenuItem(new MenuItem("Welcome New Customer", ()->newCustomer()));
+        mainMenu.addMenuItem(new MenuItem("Define New Tool", ()->newTool()));
+        mainMenu.addMenuItem(new MenuItem("Define New Plant", ()->newPlant()));
+        mainMenu.addMenuItem(new MenuItem("Switch View", ()->switchView()));
     }
 
 
@@ -65,13 +62,14 @@ public class Controller{
 
     private void placeOrder(){
         System.out.println (store.getCustomerList());
-        System.out.println ("Selection of Customer: ");
+        System.out.print("Selection of Customer: ");
         int customerIndex = getInt("");
         int orderIndex = store.newOrder(customerIndex);
-        System.out.println ("Select products(Enter -1 to stop): ");
+        //System.out.println ("Select products(Enter -1 to stop): ");
 
         while (true){
 	        System.out.println (store.getProductList());
+	        System.out.print("\nSelect products(Enter -1 to stop): ");
 	        int productIndex = getInt("");
 	        if (productIndex == -1) break;
 	        int quantity = getInt("Enter the quanity: ");
@@ -84,7 +82,7 @@ public class Controller{
 
     private void newCustomer(){
     	String name = getString("Enter the new Customer's name: ");
-    	String email = getString ("Enter the email address: ");
+    	String email = getString("Enter the email address: ");
     	Customer customer = new Customer(name, email);
     	store.addCustomer(customer);
     	output = "Customer successfully added!";
@@ -146,7 +144,6 @@ public class Controller{
     	System.out.println (clearScreen);
     	System.out.println(store.getName());
     	int selection = getInt(mainMenu.toString() + "\n" + getView() + "\n" + output + "\nSelection:");
-    	//mainMenu.run(selection);
     	return selection;
     }
 
@@ -202,18 +199,6 @@ public class Controller{
 	    		}
     	}
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
 
