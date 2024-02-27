@@ -1,6 +1,11 @@
 package mdi;
 
 import store.Store;
+import store.Customer;
+import store.Tool;
+import store.Plant;
+import store.Exposure;
+
 import java.util.Scanner;
 
 //import mdi.View;
@@ -15,6 +20,7 @@ public class Controller{
     private String output;
     private boolean isRunning;
     private Scanner in; 
+    private static String clearScreen = "\n".repeat(255);
 
 
     public Controller(String storeName){
@@ -41,7 +47,7 @@ public class Controller{
                 Integer i = selectFromMenu();
                 output = "";
                 if(i == null) continue;
-                Menu.run(i);
+                mainMenu.run(i);
                 } 
                 catch (Exception e) {
                 print("#### Invalid command");
@@ -60,18 +66,18 @@ public class Controller{
     private void placeOrder(){
         System.out.println (store.getCustomerList());
         System.out.println ("Selection of Customer: ");
-        int customerIndex = getInt();
+        int customerIndex = getInt("");
         int orderIndex = store.newOrder(customerIndex);
         System.out.println ("Select products(Enter -1 to stop): ");
 
         while (true){
 	        System.out.println (store.getProductList());
-	        int productIndex = getInt();
+	        int productIndex = getInt("");
 	        if (productIndex == -1) break;
 	        int quantity = getInt("Enter the quanity: ");
 	    }
 	    output = "Order successful!";
-	    view = View.orders;
+	    view = View.ORDERS;
     }
 
 
@@ -82,7 +88,7 @@ public class Controller{
     	Customer customer = new Customer(name, email);
     	store.addCustomer(customer);
     	output = "Customer successfully added!";
-    	view = View.customers;
+    	view = View.CUSTOMERS;
     }
 
 
@@ -93,7 +99,7 @@ public class Controller{
     	Tool tool = new Tool(name, price);
     	store.addProduct(tool);
     	output = "New tool successfully added!";
-    	view = View.products;
+    	view = View.PRODUCTS;
     }
 
 
@@ -102,7 +108,7 @@ public class Controller{
     	int count = 0;
     	String name = getString("Enter name of the plant: ");
     	int price = getInt("Enter price of the plant: ");
-    	Sytem.out.println("\nOptions for exposure level are:");
+    	System.out.println("\nOptions for exposure level are:");
     	for (Exposure exposure: Exposure.values()){
     		System.out.println (count + "] " + exposure);
     		count++;
@@ -111,16 +117,21 @@ public class Controller{
     	Plant plant = new Plant(name,price,Exposure.values()[exposureIndex]);
     	store.addProduct(plant);
     	output = "New plant successfully added!";
-    	view = View.products;
+    	view = View.PRODUCTS;
     }
 
 
 
     private void switchView(){
-    	String[] views = {"customers", "products", "orders"};
-    	int userChoice = getInt("Enter view (choose 1,2 or 3):  1(customers) 2(products)  3(orders)");
-    	output = "";
-    	view = View.views[userChoice - 1];
+    	int count = 0;
+    	System.out.println("\nOptions for views are:");
+    	for (View view: View.values()){
+    		System.out.println (count + "] " + view);
+    		count++;
+    	}
+    	int viewIndex = getInt("Enter index for view: ");
+    	output = "View selected!";
+    	view = View.values()[viewIndex];
     }
 
 
@@ -132,9 +143,11 @@ public class Controller{
 
 
     private Integer selectFromMenu(){
+    	System.out.println (clearScreen);
     	System.out.println(store.getName());
     	int selection = getInt(mainMenu.toString() + "\n" + getView() + "\n" + output + "\nSelection:");
-    	mainMenu.run(selection);
+    	//mainMenu.run(selection);
+    	return selection;
     }
 
 
@@ -145,15 +158,18 @@ public class Controller{
 
 
 
-    private void getString(String prompt){
+    private String getString(String prompt){
+    	String input = "";
     	Scanner scanner = new Scanner(System.in);
+
     	while (true){
     		try{
 	    		System.out.println (prompt);
-	    		String input = scanner.nextLine().trim();
+	    		input = scanner.nextLine().trim();
 	    		if (input.isEmpty()){
 	    			throw new IllegalArgumentException ("Input can't be empty!");
 	    		}
+	    		return input;
 	    	} catch(IllegalArgumentException e){
 	    			System.err.println("Invalid Input! " + e);
 	    		}
@@ -172,7 +188,6 @@ public class Controller{
 	    		System.err.println("Invalid Input! " + e);
 	    		}
     	}
-    	return input;
     }
 
 
@@ -186,7 +201,6 @@ public class Controller{
 	    		System.err.println("Invalid Input! " + e);
 	    		}
     	}
-    	return input;
     }
 
 
