@@ -62,7 +62,7 @@ public class Controller{
         System.out.println ("Selection of Customer: ");
         int customerIndex = getInt();
         int orderIndex = store.newOrder(customerIndex);
-        System.out.println ("Select products(Enter -1 to stop): ")
+        System.out.println ("Select products(Enter -1 to stop): ");
 
         while (true){
 	        System.out.println (store.getProductList());
@@ -71,7 +71,7 @@ public class Controller{
 	        int quantity = getInt("Enter the quanity: ");
 	    }
 	    output = "Order successful!";
-	    view = view.orders;
+	    view = View.orders;
     }
 
 
@@ -82,16 +82,39 @@ public class Controller{
     	Customer customer = new Customer(name, email);
     	store.addCustomer(customer);
     	output = "Customer successfully added!";
-    	view = view.customers;
-
+    	view = View.customers;
     }
 
 
 
-    public void newTool(){}
+    public void newTool(){
+    	String name = getString("Enter name of the tool: ");
+    	int price = getInt("Enter price of the tool: ");
+    	Tool tool = new Tool(name, price);
+    	store.addProduct(tool);
+    	output = "New tool successfully added!";
+    	view = View.products;
+    }
+
+
 
     public void newPlant(){
+    	int count = 0;
+    	String name = getString("Enter name of the plant: ");
+    	int price = getInt("Enter price of the plant: ");
+    	Sytem.out.println("\nOptions for exposure level are:")
+    	for (Exposure exposure: Exposure.values()){
+    		System.out.println (count + "] " + exposure);
+    		count++;
+    	}
+    	int exposureIndex = getInt("Enter index for exposure: ");
+    	Plant plant = new Plant(name,price,Exposure.values()[exposureIndex]);
+    	store.addProduct(plant);
+    	output = "New plant successfully added!";
+    	view = View.products;
     }
+
+
 
     public void switchView(){}
 
