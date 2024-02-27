@@ -51,13 +51,13 @@ public class Controller{
 
 
 
-    public void exit(){
+    private void exit(){
         isRunning = false;
     }
 
 
 
-    public void placeOrder(){
+    private void placeOrder(){
         System.out.println (store.getCustomerList());
         System.out.println ("Selection of Customer: ");
         int customerIndex = getInt();
@@ -76,7 +76,7 @@ public class Controller{
 
 
 
-    public void newCustomer(){
+    private void newCustomer(){
     	String name = getString("Enter the new Customer's name: ");
     	String email = getString ("Enter the email address: ");
     	Customer customer = new Customer(name, email);
@@ -87,7 +87,7 @@ public class Controller{
 
 
 
-    public void newTool(){
+    private void newTool(){
     	String name = getString("Enter name of the tool: ");
     	int price = getInt("Enter price of the tool: ");
     	Tool tool = new Tool(name, price);
@@ -98,11 +98,11 @@ public class Controller{
 
 
 
-    public void newPlant(){
+    private void newPlant(){
     	int count = 0;
     	String name = getString("Enter name of the plant: ");
     	int price = getInt("Enter price of the plant: ");
-    	Sytem.out.println("\nOptions for exposure level are:")
+    	Sytem.out.println("\nOptions for exposure level are:");
     	for (Exposure exposure: Exposure.values()){
     		System.out.println (count + "] " + exposure);
     		count++;
@@ -116,7 +116,62 @@ public class Controller{
 
 
 
-    public void switchView(){}
+    private void switchView(){
+    	String[] views = {"customers", "products", "orders"};
+    	int userChoice = getInt("Enter view (choose 1,2 or 3):  1(customers) 2(products)  3(orders)");
+    	output = "";
+    	view = View.(views.values()[userChoice - 1]);
+    }
+
+
+
+
+    private String getView(){
+    	return "Current view: " + view;
+    }
+
+
+    private Integer selectFromMenu(){
+    	System.out.println(store.getName());
+    	int selection = getInt(mainMenu.toString() + "\n" + getView() + "\n" + output + "\nSelection:");
+    	mainMenu.run(selection);
+    }
+
+
+
+    private void print(String s){
+    	output += s + "\n";
+    }
+
+
+
+    private void getString(String prompt){
+    	Scanner scanner = new Scanner(System.in);
+    	while (true){
+    		try{
+	    		System.out.println (prompt);
+	    		String input = scanner.nextLine().trim();
+	    		if (input.isEmpty()){
+	    			throw new IllegalArgumentException ("Input can't be empty!");
+	    		}
+	    	} catch(IllegalArgumentException e){
+	    			System.err.println("Invalid Input! " + e);
+	    		}
+    	}
+    }
+
+
+
+    private Integer getInt(String prompt){}
+
+    private Double getDouble(String prompt){}
+
+
+
+
+
+
+
 
 
 
