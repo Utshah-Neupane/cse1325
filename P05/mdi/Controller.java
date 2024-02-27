@@ -120,7 +120,7 @@ public class Controller{
     	String[] views = {"customers", "products", "orders"};
     	int userChoice = getInt("Enter view (choose 1,2 or 3):  1(customers) 2(products)  3(orders)");
     	output = "";
-    	view = View.(views.values()[userChoice - 1]);
+    	view = View.views[userChoice - 1];
     }
 
 
@@ -162,9 +162,32 @@ public class Controller{
 
 
 
-    private Integer getInt(String prompt){}
+    private Integer getInt(String prompt){
+    	while (true){
+    		try{
+	    		String input = getString(prompt);
+	    		return Integer.parseInt(input);
+	    		
+	    	} catch(IllegalArgumentException e){
+	    		System.err.println("Invalid Input! " + e);
+	    		}
+    	}
+    	return input;
+    }
 
-    private Double getDouble(String prompt){}
+
+    private Double getDouble(String prompt){
+    	while (true){
+    		try{
+	    		String input = getString(prompt);
+	    		return Double.parseDouble(input);
+	    		
+	    	} catch(IllegalArgumentException e){
+	    		System.err.println("Invalid Input! " + e);
+	    		}
+    	}
+    	return input;
+    }
 
 
 
