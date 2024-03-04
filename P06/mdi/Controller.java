@@ -10,6 +10,11 @@ import store.Product;
 import store.Item;
 
 import java.util.Scanner;
+import java.io.BufferedWriter;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.FileReader;
+import java.io.FileWriter;
 
 
 public class Controller{
@@ -21,6 +26,7 @@ public class Controller{
     private boolean isRunning;
     private Scanner in; 
     private static final String clearScreen = "\n".repeat(150);
+    private String filename = "Untitled";
 
 
     public Controller(String storeName){
@@ -38,6 +44,9 @@ public class Controller{
         mainMenu.addMenuItem(new MenuItem("Define New Tool", ()->newTool()));
         mainMenu.addMenuItem(new MenuItem("Define New Plant", ()->newPlant()));
         mainMenu.addMenuItem(new MenuItem("Switch View", ()->switchView()));
+        mainMenu.addMenuItem(new MenuItem("Save", ()->save()));
+        mainMenu.addMenuItem(new MenuItem("Save as", ()->saveAs()));
+        mainMenu.addMenuItem(new MenuItem("Open", ()->open()));
     }
 
 
@@ -60,7 +69,6 @@ public class Controller{
     private void exit(){
         isRunning = false;
     }
-
 
 
     private void placeOrder(){
@@ -210,5 +218,36 @@ public class Controller{
 	    		}
     	}
     }
+
+
+
+    private void save (){
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))){
+            store.save(bw);
+        } catch (IOException e){
+            System.err.println ("Error occured while saving: " + e.getMessage());
+        }
+    }
+
+    private void saveAs(){
+        System.out.println("Enter name of the file to save as: ");
+        String userFilename = in.nextLine();
+        if (!userFilename.isEmpty()){
+            filename = userFilename;
+            save();
+        }
+    }
+
+
+    private void open(){
+        
+    }
+
+
+
+
+
+
+
 
 }
