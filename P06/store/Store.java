@@ -37,6 +37,13 @@ public class Store{
 				products.add(new Tool(br));
 			}
 		}
+
+
+		int numOrders = Integer.parseInt(br.readLine());
+		orders = new ArraryList<>();
+		for (int i = 0; i < numOrders; i++){
+			orders.add(new Order(br));
+		}
 	}
 
 
@@ -57,6 +64,12 @@ public class Store{
 		bw.newLine();
 		for (Product product: products){
 			product.save(bw);
+		}
+
+		bw.write(Integer.toString(orders.size()));
+		bw.newLine();
+		for (Order order: orders){
+			order.save(bw);
 		}
 	}
 
