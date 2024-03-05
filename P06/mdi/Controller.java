@@ -222,7 +222,8 @@ public class Controller{
 
 
     private void save (){
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename, true))){
+        //try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))){
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename,true))){
             store.save(bw);
             System.out.println ("Wrote data to: " + filename);
         } catch (Exception e){
