@@ -21,10 +21,8 @@ public class Customer{
 
 	public Customer(BufferedReader br) throws IOException{
 		this.name = br.readLine();
-		this.eamil = br.readLine();
+		this.email = br.readLine();
 	}
-
-
 
 
 	@Override
@@ -32,7 +30,7 @@ public class Customer{
 		return (name + "(" + email + ")");
 	}
 
-	public void Save(BufferedWriter bw) throws IOException{
+	public void save(BufferedWriter bw) throws IOException{
 		bw.write(name);
 		bw.newLine();
 		bw.write(email);
