@@ -26,7 +26,7 @@ public class Controller{
     private boolean isRunning;
     private Scanner in; 
     private static final String clearScreen = "\n".repeat(150);
-    private String filename = "Untitled";
+    private String filename = "Untitled.txt";
 
 
     public Controller(String storeName){
@@ -222,15 +222,16 @@ public class Controller{
 
 
     private void save (){
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))){
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename, true))){
             store.save(bw);
-        } catch (IOException e){
-            System.err.println ("Error occured while saving: " + e.getMessage());
+            System.out.println ("Wrote data to: " + filename);
+        } catch (Exception e){
+            System.err.println ("Error occured while saving to file: " + e);
         }
     }
 
     private void saveAs(){
-        System.out.println("Enter name of the file to save as: ");
+        System.out.print("Enter name of the file to save as: ");
         String userFilename = in.nextLine();
         if (!userFilename.isEmpty()){
             filename = userFilename;
@@ -240,14 +241,16 @@ public class Controller{
 
 
     private void open(){
-        
+        System.out.print("Enter name of the file to open: ");
+        String userFilename = in.nextLine();
+        if (!userFilename.isEmpty()){
+            filename = userFilename;
+            try (BufferedReader br = new BufferedReader(new FileReader(filename))){
+            store = new Store(br);
+        } catch (Exception e){
+            System.err.println ("Error occured while opening: " + e);
+            store = null;
+        }
+        }
     }
-
-
-
-
-
-
-
-
 }
