@@ -1,5 +1,10 @@
 package store;
+
 import java.util.ArrayList;
+import java.io.BufferedWriter;
+import java.io.BufferedReader;
+import java.io.IOException;
+
 
 
 public class Store{
@@ -16,8 +21,43 @@ public class Store{
 		this.orders = new ArrayList<>();
 	}
 
+	public Store (BufferedReader br) throws IOException{
+		int numCustomers = Integer.parseInt(br.readLine());
+		for (int i = 0; i < numCustomers; i++){
+			customers.add(new Customer(br));
+		}
+
+		int numProducts = Integer.parseInt(br.readLine());
+		for (int i = 0; i < numProducts; i++){
+			String typeProduct = br.readLine();
+			if (typeProduct.equals("Plant")){
+				products.add(new Plant(br));
+			}
+			if (typeProduct.equals("Tool")){
+				products.add(new Tool(br));
+			}
+		}
+	}
+
+
+
 	public String getName(){
 		return name;
+	}
+
+
+	public void save(BufferedWriter bw) throws IOException{
+		bw.write(Integer.toString(customers.size()));
+		bw.newLine();
+		for (Customer customer: customers){
+			customer.save(bw);
+		}
+
+		bw.write(Integer.toString(products.size()));
+		bw.newLine();
+		for (Product product: products){
+			product.save(bw);
+		}
 	}
 
 
