@@ -68,7 +68,51 @@ public class Factor {
         }
 
         // Factor all of the big integers
-        solve(0, 0, bigints.length); 
+        solve(0, 0, bigints.length);
+
+
+
+        Thread[] threads = new Thread[numThreads];
+        int batchSize = (int)Math.ceil((double)bigints.length / numThreads);
+        int startIndex = 0;
+
+        for (int i=0; i <numThreads; i++){
+            final int threadIndex = i;
+            final int endIndex = Math.min(startIndex + batchSize, bigints.length);
+            final int finalStartIndex = startIndex;
+            final int finalEndIndex = endIndex;
+
+            threads[i] = new Thread(()->{ solve (threadIndex,finalStartIndex, finalEndIndex);});
+            threads[i].start();
+            startIndex = endIndex; 
+        }
+
+
+        for (Thread thread: threads){
+            try{
+                thread.join();
+            }catch (InterruptedException e){
+                System.err.println ("Abort: " + e);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // Print all solutions
         for(PrimeFactors solution : solutions)
@@ -98,3 +142,7 @@ public class Factor {
         System.exit(-1);
     }
 }
+
+
+
+
