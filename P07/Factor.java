@@ -68,8 +68,7 @@ public class Factor {
         }
 
         // Factor all of the big integers
-        solve(0, 0, bigints.length);
-
+        //solve(0, 0, bigints.length);
 
 
         Thread[] threads = new Thread[numThreads];
@@ -95,22 +94,6 @@ public class Factor {
                 System.err.println ("Abort: " + e);
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
