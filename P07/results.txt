@@ -12,6 +12,9 @@ NOTE: These are measurements which may vary plus your opinions which may vary a 
 
 QUESTION 1: What Factor command line arguments did you use to achieve a 30 to 60 second runtime? Note: We're only interested in the "real" seconds for this question.
 
+Ans: time java Factor 5 5784968 2384935 234223 235468498534 34535324 574322434 900091234 7568545
+
+
 
 
 
@@ -64,6 +67,7 @@ sys	0m0.414s
 
 
 QUESTION 3: Does adding more threads continue to speed up the program? Do more threads ever slow down the program slightly?  Why or why not?
+Ans: Adding more threads continue to speed up the program as the workload is divided among several threads. Yes, more threads can slow down the program too due to overhead, resource contention and limitations of the hardware. 
 
 
 
@@ -73,7 +77,7 @@ QUESTION 3: Does adding more threads continue to speed up the program? Do more t
 
 
 QUESTION 4: Does adding more threads increase the "system load", or is it constant regardless of the number of threads?  Why?
-
+Ans: Adding more threads does increase teh "system load" because each thread utlizes resources such as CPU time, memory. Thus, increasing threads lead to higher system load as many threads run concurrently. 
 
 
 
