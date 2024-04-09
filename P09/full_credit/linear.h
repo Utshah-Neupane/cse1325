@@ -12,3 +12,5 @@ public:
 };
 
 #endif // LINEAR_H
+
+

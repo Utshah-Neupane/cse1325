@@ -12,3 +12,5 @@ public:
 };
 
 #endif // QUADRATIC_H
+
+

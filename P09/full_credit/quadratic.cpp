@@ -16,7 +16,7 @@ std::vector<double> Quadratic::solve() const {
     double a = _coefficients[0];
     double b = _coefficients[1];
     double c = _coefficients[2];
-    
+
     double discriminant = b*b - 4*a*c;
     
     if (discriminant < 0) {
@@ -26,6 +26,9 @@ std::vector<double> Quadratic::solve() const {
     std::vector<double> roots;
     roots.push_back((-b + std::sqrt(discriminant)) / (2*a));
     roots.push_back((-b - std::sqrt(discriminant)) / (2*a));
+
     
     return roots;
 }
+
+

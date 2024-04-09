@@ -5,3 +5,4 @@ Polynomial::Polynomial(const std::vector<double>& coefficients)
 
 Polynomial::~Polynomial() {  // Virtual destructor
 }
+

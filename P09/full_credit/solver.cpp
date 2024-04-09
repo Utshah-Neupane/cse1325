@@ -4,6 +4,8 @@
 #include "polynomial.h"
 #include "linear.h"
 #include "quadratic.h"
+#include <cmath>
+
 
 int main(int argc, char* argv[]) {
     if (argc != 3 && argc != 4) {
