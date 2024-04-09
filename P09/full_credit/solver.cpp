@@ -20,9 +20,15 @@ int main(int argc, char* argv[]) {
 
     try {
         if (argc == 3) {
-            p = new Linear(coefficients);
+            if (coefficients[0] == 0) {
+                throw std::runtime_error("a may not be 0");
+            }
+            p = new Linear({coefficients[0], coefficients[1]});
         } else {
-            p = new Quadratic(coefficients);
+            if (coefficients[0] == 0) {
+                throw std::runtime_error("a may not be 0");
+            }
+            p = new Quadratic({coefficients[0], coefficients[1], coefficients[2]});
         }
         
         std::vector<double> roots = p->solve();
