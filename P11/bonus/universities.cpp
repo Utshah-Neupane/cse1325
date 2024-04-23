@@ -3,6 +3,7 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <iomanip> // for std::setw
 
 #include "university.h"
 
@@ -11,15 +12,30 @@ typedef std::vector<University> Universities;
 
 
 int main(int argc, char* argv[]) {
-    if (argc != 2) {
-        std::cerr << "Usage: " << argv[0] << " <filename>\n";
+    if (argc != 3) {
+        std::cerr << "Usage: " << argv[0] << " <filename> <state_abbrev_file>\n";
         return -1;
     }
+
+    std::ifstream stateAbbrevFile(argv[2]);
+    if (!stateAbbrevFile.is_open()) {
+        std::cerr << argv[2] << ": state abbreviations file not found\n";
+        return -2;
+    }
+
+    std::map<std::string, std::string> stateAbbrevMap;
+    std::string stateName, abbrev;
+
+    while (std::getline(stateAbbrevFile, abbrev) && std::getline(stateAbbrevFile, stateName)) {
+        stateAbbrevMap[abbrev] = stateName;
+    }
+
+    stateAbbrevFile.close();
 
     std::ifstream ifs(argv[1]);
     if (!ifs.is_open()) {
         std::cerr << argv[1] << ": file not found\n";
-        return -2;
+        return -3;
     }
 
     std::map<State, Universities> universityMap;
@@ -31,6 +47,12 @@ int main(int argc, char* argv[]) {
     }
 
     ifs.close();
+
+    std::cout << "State Abbreviations Reference Table:" << std::endl;
+    std::cout << std::left << std::setw(25) << "Abbreviation" << "State/Territory" << std::endl;
+    for (const auto& [abbrev, stateName] : stateAbbrevMap) {
+        std::cout << std::left << std::setw(25) << abbrev << stateName << std::endl;
+    }
 
     std::string userInput;
     while (true) {
@@ -50,12 +72,11 @@ int main(int argc, char* argv[]) {
             std::cout << "No universities found in " << userInput << std::endl;
         } else {
             std::cout << "Universities in " << userInput << ":" << std::endl;
-            print_container(it->second);
+            for (const auto& uni : it->second) {
+                std::cout << "- " << uni << std::endl;
+            }
         }
     }
 
     return 0;
 }
-
-
-
