@@ -22,11 +22,4 @@ public:
     friend std::ostream& operator<<(std::ostream& ist, const University& reading);
 };
 
-template <typename T>
-void print_container(const T& container) {
-    for (const auto& item : container) {
-        std::cout << "- " << item << std::endl;
-    }
-}
-
 #endif // UNIVERSITY_H
