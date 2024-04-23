@@ -1,5 +1,6 @@
 #include "university.h"
 
+
 University::University(const std::string& name, int enrollment)
     : _name(name), _enrollment(enrollment) {
     validate();
@@ -22,14 +23,14 @@ void University::validate() {
     }
 }
 
-std::istream& operator>>(std::istream& is, University& university) {
-    std::getline(is >> std::ws, university._name);
-    is >> university._enrollment;
-    university.validate();
-    return is;
+std::istream& operator>>(std::istream& ist, University& reading) {
+    std::getline(ist >> std::ws, reading._name);
+    ist >> reading._enrollment;
+    reading.validate();
+    return ist;
 }
 
-std::ostream& operator<<(std::ostream& os, const University& university) {
-    os << university._name << " has an enrollment of " << university._enrollment;
-    return os;
+std::ostream& operator<<(std::ostream& ist, const University& reading) {
+    ist << reading._name << " has an enrollment of " << reading._enrollment;
+    return ist;
 }

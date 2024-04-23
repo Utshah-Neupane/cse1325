@@ -18,8 +18,8 @@ public:
     const std::string& name() const;
     int enrollment() const;
 
-    friend std::istream& operator>>(std::istream& is, University& university);
-    friend std::ostream& operator<<(std::ostream& os, const University& university);
+    friend std::istream& operator>>(std::istream& ist, University& reading);
+    friend std::ostream& operator<<(std::ostream& ist, const University& reading);
 };
 
 #endif // UNIVERSITY_H

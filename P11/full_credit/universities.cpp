@@ -9,6 +9,7 @@
 typedef std::string State;
 typedef std::vector<University> Universities;
 
+
 int main(int argc, char* argv[]) {
     if (argc != 2) {
         std::cerr << "Usage: " << argv[0] << " <filename>\n";
@@ -33,11 +34,15 @@ int main(int argc, char* argv[]) {
 
     std::string userInput;
     while (true) {
-        std::cout << "Enter a 2-character state abbreviation (or empty to exit): ";
+        std::cout << "\n\nEnter a 2-character state abbreviation (or -1 to exit): ";
         std::cin >> userInput;
 
         if (userInput.empty()) {
             break;
+        }
+
+        if (userInput == "-1"){
+            return 0;
         }
 
         auto it = universityMap.find(userInput);
