@@ -8,8 +8,6 @@
 #include "university.h"
 
 typedef std::string State;
-typedef std::vector<University> Universities;
-
 
 int main(int argc, char* argv[]) {
     if (argc != 3) {
@@ -38,12 +36,12 @@ int main(int argc, char* argv[]) {
         return -3;
     }
 
-    std::map<State, Universities> universityMap;
+    std::multimap<State, University> universityMap;
     State state;
     University university;
 
     while (ifs >> state >> university) {
-        universityMap[state].push_back(university);
+        universityMap.insert(std::make_pair(state, university));
     }
 
     ifs.close();
@@ -63,17 +61,14 @@ int main(int argc, char* argv[]) {
             break;
         }
 
-        if (userInput == "-1"){
+        if (userInput == "-1") {
             return 0;
         }
 
-        auto it = universityMap.find(userInput);
-        if (it == universityMap.end()) {
-            std::cout << "No universities found in " << userInput << std::endl;
-        } else {
-            std::cout << "Universities in " << userInput << ":" << std::endl;
-            for (const auto& uni : it->second) {
-                std::cout << "- " << uni << std::endl;
+        std::cout << "Universities in " << userInput << ":" << std::endl;
+        for (auto it = universityMap.begin(); it != universityMap.end(); ++it) {
+            if (it->first == userInput) {
+                std::cout << "- " << it->second << std::endl;
             }
         }
     }
