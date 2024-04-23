@@ -1,6 +1,5 @@
 #include "university.h"
 
-
 University::University(const std::string& name, int enrollment)
     : _name(name), _enrollment(enrollment) {
     validate();
